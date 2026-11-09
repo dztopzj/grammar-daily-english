@@ -1,0 +1,14 @@
+# 运行时数据（服务器自动生成）
+server/data/
+node_modules/
+*.log
+
+# 调试临时文件
+_check.js
+_res.json
+_dbg*.js
+
+# 系统文件
+Thumbs.db
+.DS_Store
+.workbuddy/

@@ -1,0 +1,13 @@
+{
+  "name": "grammar-sync-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "小学英语语法练习的云端同步 API（零依赖）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

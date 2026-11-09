@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>小学英语语法 · 每日五题</title>
+<style>
+  :root{
+    --bg:#f2f7ff; --card:#ffffff; --ink:#2b3a55; --sub:#7a8aa5;
+    --blue:#3b82f6; --blue-d:#2563eb; --green:#22c55e; --green-bg:#eafaf0;
+    --red:#ef4444; --red-bg:#fdeeee; --orange:#f59e0b; --orange-bg:#fef6e7;
+    --line:#e3ebf7; --radius:16px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    padding-bottom:24px;}
+  header{background:linear-gradient(135deg,#3b82f6,#6366f1); color:#fff;
+    padding:18px 16px 14px; border-radius:0 0 22px 22px;}
+  header h1{margin:0; font-size:20px; letter-spacing:.5px;}
+  header p{margin:4px 0 0; font-size:12.5px; opacity:.85;}
+  .wrap{max-width:680px; margin:0 auto; padding:0 14px;}
+  nav{display:flex; gap:6px; margin:12px 0 4px; overflow-x:auto; padding-bottom:4px;}
+  nav button{flex:1; min-width:76px; border:1px solid var(--line); background:#fff;
+    border-radius:12px; padding:9px 4px; font-size:13px; color:var(--sub);
+    position:relative; cursor:pointer; font-family:inherit;}
+  nav button.on{background:var(--blue); color:#fff; border-color:var(--blue); font-weight:600;}
+  nav button .badge{position:absolute; top:-5px; right:-3px; background:var(--red); color:#fff;
+    font-size:10px; border-radius:8px; padding:1px 5px; min-width:16px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; margin:12px 0; box-shadow:0 2px 8px rgba(59,130,246,.06);}
+  .btn{display:block; width:100%; border:none; border-radius:14px; padding:14px;
+    font-size:16px; font-weight:600; color:#fff; cursor:pointer; font-family:inherit;}
+  .btn-primary{background:var(--blue);}
+  .btn-primary:active{background:var(--blue-d);}
+  .btn-green{background:var(--green);}
+  .btn-ghost{background:#fff; color:var(--blue); border:1.5px solid var(--blue);}
+  .btn:disabled{opacity:.5;}
+  .topic-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px;}
+  .topic-chip{border:1.5px solid var(--line); background:#fff; border-radius:12px;
+    padding:10px 8px; text-align:center; font-size:13px; cursor:pointer; font-family:inherit;}
+  .topic-chip.on{border-color:var(--blue); background:#eaf2ff; color:var(--blue-d); font-weight:600;}
+  .muted{color:var(--sub); font-size:12.5px;}
+  .qhead{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+  .tag{font-size:11px; padding:3px 9px; border-radius:10px; background:#eaf2ff; color:var(--blue-d);}
+  .tag.rev{background:var(--orange-bg); color:#b45309;}
+  .tag.fix{background:#fdf2f2; color:#b91c1c;}
+  .qtext{font-size:18px; line-height:1.6; margin:6px 0 14px; word-break:break-word;}
+  .opt{display:block; width:100%; text-align:left; border:1.5px solid var(--line);
+    background:#fff; border-radius:12px; padding:13px 14px; font-size:16px; margin:8px 0;
+    cursor:pointer; font-family:inherit; color:var(--ink);}
+  .opt .letter{color:var(--sub); font-weight:700; margin-right:8px;}
+  .opt.right{border-color:var(--green); background:var(--green-bg); color:#166534; font-weight:600;}
+  .opt.wrong{border-color:var(--red); background:var(--red-bg); color:#991b1b;}
+  .opt:disabled{cursor:default;}
+  .explain{background:#f6f9ff; border-left:4px solid var(--blue); border-radius:8px;
+    padding:10px 12px; font-size:13.5px; line-height:1.6; margin-top:12px;}
+  .result{text-align:center; padding:10px 0;}
+  .result .score{font-size:44px; font-weight:800; color:var(--blue-d);}
+  .date-h{font-size:14px; font-weight:700; color:var(--blue-d); margin:18px 0 4px;
+    display:flex; align-items:center; gap:8px;}
+  .date-h::after{content:""; flex:1; height:1px; background:var(--line);}
+  .rec-card{cursor:pointer;}
+  .rec-head{display:flex; justify-content:space-between; align-items:center;}
+  .rec-score{font-weight:700;}
+  .rec-detail{margin-top:10px; border-top:1px dashed var(--line); padding-top:8px;}
+  .rec-item{font-size:13.5px; padding:6px 0; line-height:1.5; border-bottom:1px solid #f2f5fb;}
+  .rec-item:last-child{border-bottom:none;}
+  .ok{color:var(--green); font-weight:700;} .bad{color:var(--red); font-weight:700;}
+  .bar-wrap{background:#eef3fb; border-radius:8px; height:10px; overflow:hidden; margin:6px 0;}
+  .bar{height:100%; border-radius:8px;}
+  .lvl{font-size:11px; padding:2px 8px; border-radius:9px; font-weight:600;}
+  .lvl.good{background:var(--green-bg); color:#15803d;}
+  .lvl.mid{background:var(--orange-bg); color:#b45309;}
+  .lvl.low{background:var(--red-bg); color:#b91c1c;}
+  .advice{font-size:12.5px; color:var(--sub); line-height:1.6; margin-top:4px;}
+  .stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; text-align:center;}
+  .stat-grid .num{font-size:24px; font-weight:800; color:var(--blue-d);}
+  .wb-item{border-bottom:1px solid #f2f5fb; padding:12px 0;}
+  .wb-item:last-child{border-bottom:none;}
+  .wb-actions{display:flex; gap:8px; margin-top:8px;}
+  .wb-actions button{flex:1; border-radius:10px; padding:9px; font-size:13px; font-family:inherit; cursor:pointer;}
+  .account-bar{margin-top:10px; background:rgba(255,255,255,.18); border-radius:10px;
+    padding:7px 12px; font-size:13px; cursor:pointer; display:inline-block;}
+  .inp{width:100%; padding:11px; border:1.5px solid var(--line); border-radius:12px;
+    font-size:14px; font-family:inherit; margin:6px 0; background:#fff; color:var(--ink);}
+  textarea.inp{min-height:80px; resize:vertical;}
+  .cal{display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-top:10px;}
+  .cal-hd{font-size:11px; color:var(--sub); text-align:center;}
+  .cal-d{position:relative; text-align:center; font-size:13px; padding:9px 0;
+    border-radius:9px; color:var(--ink); background:#f6f9ff; cursor:default;}
+  .cal-d.learned{background:var(--green); color:#fff; font-weight:700; cursor:pointer;}
+  .cal-d.today{outline:2px solid var(--blue);}
+  .cal-d.sel{outline:2px solid var(--orange);}
+  .cal-d .dot{display:block; font-size:9px; font-weight:600; line-height:1.1;}
+  .sent{border-bottom:1px solid #f2f5fb; padding:12px 0;}
+  .sent:last-child{border-bottom:none;}
+  .sent .en{font-size:16px; line-height:1.5;}
+  .sent .zh{font-size:12.5px; color:var(--sub); margin-top:2px;}
+  .sent .row{display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;}
+  .mini-btn{border:1.5px solid var(--line); background:#fff; border-radius:10px;
+    padding:8px 14px; font-size:13px; cursor:pointer; font-family:inherit; color:var(--ink);}
+  .mini-btn.primary{border-color:var(--blue); color:var(--blue-d); font-weight:600;}
+  .pass-tab{display:inline-block; border:1.5px solid var(--line); background:#fff;
+    border-radius:10px; padding:8px 12px; font-size:13px; margin:0 6px 8px 0; cursor:pointer; font-family:inherit;}
+  .pass-tab.on{border-color:var(--blue); background:#eaf2ff; color:var(--blue-d); font-weight:600;}
+  .pass-text{font-size:16px; line-height:1.9; background:#f6f9ff; padding:14px;
+    border-radius:12px; word-break:break-word;}
+  .pass-zh{font-size:12.5px; color:var(--sub); line-height:1.7; margin-top:8px;}
+  .hidden{display:none;}
+  .toast{position:fixed; left:50%; bottom:60px; transform:translateX(-50%);
+    background:rgba(43,58,85,.92); color:#fff; padding:10px 18px; border-radius:12px;
+    font-size:13.5px; z-index:99; max-width:80vw; text-align:center;}
+  h2{font-size:17px; margin:14px 0 6px;}
+  select{width:100%; padding:12px; border:1.5px solid var(--line); border-radius:12px;
+    font-size:15px; font-family:inherit; background:#fff; color:var(--ink); margin-bottom:10px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>📚 小学英语语法 · 每日五题</h1>
+    <p>每天练一练，语法顶呱呱！</p>
+    <div class="account-bar" onclick="switchTab('settings')">👤 当前账号：<b id="curUserName"></b> · 点此切换/管理</div>
+    <div class="account-bar" onclick="switchTab('settings')">☁️ <span id="syncState">本机模式</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav>
+    <button id="tab-practice" class="on" onclick="switchTab('practice')">✏️ 练习</button>
+    <button id="tab-records" onclick="switchTab('records')">📅 记录</button>
+    <button id="tab-wrong" onclick="switchTab('wrong')">📕 错题本<span id="wrongBadge" class="badge hidden"></span></button>
+    <button id="tab-listen" onclick="switchTab('listen')">🎧 听读</button>
+    <button id="tab-analysis" onclick="switchTab('analysis')">📊 分析</button>
+    <button id="tab-settings" onclick="switchTab('settings')">⚙️ 设置</button>
+  </nav>
+
+  <!-- 练习 -->
+  <section id="view-practice">
+    <div id="setupPanel" class="card">
+      <h2>今天想练什么？</h2>
+      <p class="muted">选「全部随机」每天出 5 道题；也可以选一个知识点专项练习。系统会自动把你的错题混进练习里复习哦～</p>
+      <div style="margin:10px 0;">
+        <div class="topic-chip on" data-topic="random" onclick="pickTopic(this)" style="width:100%; margin-bottom:8px;">🎲 全部随机出题</div>
+        <div class="topic-grid" id="topicGrid"></div>
+      </div>
+      <button class="btn btn-primary" onclick="startSession()">🚀 点击出题（5 道）</button>
+      <p class="muted" style="text-align:center; margin-top:8px;">每天可以练习多次，练习历史按日期保存</p>
+    </div>
+
+    <div id="quizPanel" class="hidden">
+      <div class="card">
+        <div class="qhead">
+          <span id="qProgress" class="tag">第 1 题</span>
+          <span id="qTag" class="tag">新题</span>
+        </div>
+        <div id="qTopic" class="muted"></div>
+        <div id="qText" class="qtext"></div>
+        <div id="qOpts"></div>
+        <div id="qExplain" class="explain hidden"></div>
+        <button id="btnNext" class="btn btn-primary hidden" style="margin-top:12px;" onclick="nextQuestion()">下一题 ➡️</button>
+      </div>
+      <p class="muted" style="text-align:center;">答错会自动加出一道同类型题，帮你真正学会！</p>
+    </div>
+
+    <div id="resultPanel" class="card hidden">
+      <div class="result">
+        <div style="font-size:40px;">🎉</div>
+        <div class="score" id="resultScore"></div>
+        <p class="muted" id="resultMsg"></p>
+      </div>
+      <button class="btn btn-primary" onclick="backToSetup()">再练一组 🔁</button>
+      <button class="btn btn-ghost" style="margin-top:8px;" onclick="switchTab('analysis')">查看我的分析 📊</button>
+    </div>
+  </section>
+
+  <!-- 听读 -->
+  <section id="view-listen" class="hidden">
+    <div class="card">
+      <h2 style="margin-top:0;">🎧 每日一句 · 听一听 跟一跟</h2>
+      <p class="muted">点 🔊 听标准发音，点 🎤 大声跟读（Chrome/Edge 浏览器可自动打分）</p>
+      <div id="sentenceList"></div>
+      <button class="mini-btn primary" style="margin-top:8px;" onclick="nextBatch()">🔄 换一批（句子+短文）</button>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0;">📖 小短文跟读</h2>
+      <div id="passageBox"></div>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0;">📚 听读资料库</h2>
+      <p class="muted" id="listenBankInfo"></p>
+      <input id="listenUrl" class="inp" placeholder="听读资料 JSON 网址（https://...，可选）">
+      <button class="btn btn-primary" onclick="fetchListenBank()">🔄 联网更新听读资料</button>
+      <textarea id="listenPaste" class="inp" placeholder='或粘贴 JSON 导入，格式：{"sentences":[{"en":"I like English.","zh":"我喜欢英语。"}],"passages":[{"title":"My Pet","icon":"🐶","sents":[{"en":"I have a dog.","zh":"我有一只狗。"},{"en":"It is very cute.","zh":"它非常可爱。"}]}]}'></textarea>
+      <button class="btn btn-ghost" onclick="importListenBank()">📥 导入粘贴的听读资料</button>
+      <button class="btn btn-ghost" style="margin-top:8px;" onclick="resetListenBank()">♻️ 恢复内置资料</button>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0;">🗣️ 跟读记录</h2>
+      <div id="readStats" class="muted"></div>
+      <div id="readLog"></div>
+    </div>
+  </section>
+
+  <!-- 记录 -->
+  <section id="view-records" class="hidden">
+    <div id="calendarBox"></div>
+    <div id="recordsList"></div>
+  </section>
+
+  <!-- 错题本 -->
+  <section id="view-wrong" class="hidden">
+    <div class="card">
+      <h2 style="margin-top:0;">📕 我的错题本</h2>
+      <p class="muted">复习错题连续答对 2 次，就会自动标记为「已掌握」！</p>
+    </div>
+    <div id="wrongList"></div>
+  </section>
+
+  <!-- 分析 -->
+  <section id="view-analysis" class="hidden">
+    <div class="card">
+      <h2 style="margin-top:0;">📊 学习情况分析</h2>
+      <div class="stat-grid" id="overallStats"></div>
+    </div>
+    <div id="analysisList"></div>
+  </section>
+
+  <!-- 设置 -->
+  <section id="view-settings" class="hidden">
+    <div class="card">
+      <h2 style="margin-top:0;">👥 账号管理</h2>
+      <p class="muted">每个账号的学习记录、错题本、跟读记录独立保存，切换账号互不影响。</p>
+      <div id="userList"></div>
+      <input id="newUserName" class="inp" placeholder="输入新账号名字，如：小明" maxlength="12">
+      <button class="btn btn-primary" onclick="createUser()">➕ 创建并切换到新账号</button>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0;">☁️ 云同步（手机 / 平板 / 电脑共用一份数据）</h2>
+      <p class="muted">把随附的 <b>server.js</b> 部署到你自己的云服务器，然后在这里填写 API 地址和空间编号。各设备填<b>同一个空间编号</b>就会读写同一份云端数据；未配置时数据仅保存在本机。</p>
+      <label class="muted">① API 地址（服务器域名，建议 https）</label>
+      <input id="syncApi" class="inp" placeholder="https://your-server.com" autocomplete="off">
+      <label class="muted">② 空间编号（全家人填同一个）</label>
+      <input id="syncSpace" class="inp" placeholder="如 family2026" autocomplete="off">
+      <label class="muted">③ 访问口令（服务器设置了 TOKEN 才需要填）</label>
+      <input id="syncToken" class="inp" placeholder="可留空" autocomplete="off">
+      <button class="btn btn-primary" style="margin-top:6px;" onclick="connectSync()">🔗 保存并连接同步</button>
+      <button class="btn btn-ghost" style="margin-top:8px;" onclick="syncNow(false)">🔄 立即同步一次</button>
+      <button class="btn btn-ghost" style="margin-top:8px;" onclick="disconnectSync()">⛔ 断开云同步（改回仅本机）</button>
+      <p id="syncInfo" class="muted" style="margin-top:10px;"></p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0;">🌐 在线题库（自动联网取题）</h2>
+      <p class="muted">由 server.js 后端自动连接 <b>first-english.org</b> 在线题库，抓取与知识点匹配的练习题入库，出题时与内置题库混合使用；下方还可直达 British Council 官方讲解页。<b>需要先在上方「云同步」配置好 API 地址</b>。</p>
+      <div id="onlineInfo" class="muted"></div>
+      <button class="btn btn-primary" onclick="onlineSyncAll()">🔄 联网抓题（全部知识点）</button>
+      <button class="btn btn-ghost" style="margin-top:8px;" onclick="onlineSyncTopics([pickedTopic])">⚡ 只抓当前知识点</button>
+      <h2>🔗 官方讲解直达（British Council LearnEnglish）</h2>
+      <div id="bcLinks" class="muted"></div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0;">⬇️ 题库联网更新</h2>
+      <p class="muted">内置智能生成题库（每次出题自动生成新题）。也可以从网上题库地址手动拉取更新，或粘贴题库 JSON 导入，扩展题会随机混入日常练习。</p>
+      <input id="bankUrl" class="inp" placeholder="题库 JSON 网址（https://...）">
+      <button class="btn btn-primary" onclick="updateBank()">🔄 检查题库更新（联网）</button>
+      <textarea id="bankPaste" class="inp" placeholder='或把题库 JSON 粘贴到这里导入，格式：{"version":"v2","questions":[{"topicId":"be","text":"She ___ a teacher.","options":["is","am","are","be"],"answer":0,"explain":"..."}]}'></textarea>
+      <button class="btn btn-ghost" onclick="importBank()">📥 导入粘贴的题库</button>
+      <p id="bankInfo" class="muted" style="margin-top:10px;"></p>
+      <h2>📝 题库更新日志</h2>
+      <div id="bankLogList"></div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0;">📤 数据与备份</h2>
+      <button class="btn btn-ghost" onclick="exportData()">📤 导出当前账号学习数据</button>
+      <button class="btn btn-ghost" style="margin-top:8px;" onclick="document.getElementById('importFile').click()">📥 导入备份文件</button>
+      <input type="file" id="importFile" accept=".json,application/json" style="display:none" onchange="importData(this)">
+      <button class="btn btn-ghost" style="margin-top:8px;" onclick="clearData()">🗑️ 清空当前账号数据</button>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ================= 工具 ================= */
+const $ = id => document.getElementById(id);
+const R = a => a[Math.floor(Math.random()*a.length)];
+const RI = n => Math.floor(Math.random()*n);
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=RI(i+1); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function todayStr(){ const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function timeStr(){ const d=new Date(); return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }
+
+/* ================= 语法知识点 ================= */
+const TOPICS=[
+  {id:"be",   name:"be动词 am/is/are", icon:"🧸"},
+  {id:"pres", name:"一般现在时·三单",   icon:"⏰"},
+  {id:"prog", name:"现在进行时",        icon:"🏃"},
+  {id:"past", name:"一般过去时",        icon:"📜"},
+  {id:"futu", name:"一般将来时",        icon:"🔮"},
+  {id:"plural",name:"名词单复数",       icon:"🍎🍎"},
+  {id:"art",  name:"冠词 a/an/the",     icon:"🅰️"},
+  {id:"pron", name:"人称代词",          icon:"👧👦"},
+  {id:"comp", name:"比较级与最高级",    icon:"📏"},
+  {id:"prep", name:"时间介词 in/on/at", icon:"🕐"},
+  {id:"tb",   name:"There be 句型",     icon:"🪑"},
+  {id:"modal",name:"can/must 情态动词", icon:"💪"},
+  {id:"wh",   name:"疑问词",            icon:"❓"},
+  {id:"cnt",  name:"可数与不可数名词",  icon:"🥛"},
+];
+const topicName = id => (TOPICS.find(t=>t.id===id)||{}).name || id;
+
+/* ================= 出题引擎 ================= */
+function mk(topicId, text, correct, distractors, explain, tag){
+  const opts=[correct];
+  for(const d of distractors){ if(d!==correct && !opts.includes(d)) opts.push(d); }
+  shuffle(opts);
+  return {id:uid(), topicId, text, options:opts, answer:opts.indexOf(correct), explain, tag:tag||null};
+}
+
+/* 每个语法点多个生成器，每次调用随机抽模板 + 随机词汇 => 题目几乎不重复 */
+const BANK = {
+  be: [
+    ()=>{ const p=R([
+      ["I","am","happy today"],["You","are","my good friend"],["He","is","a tall boy"],
+      ["She","is","my English teacher"],["It","is","a cute cat"],["We","are","in the same class"],
+      ["They","are","my cousins"],["Tom","is","ten years old"],["The dogs","are","in the garden"],
+      ["My mother","is","a nurse"]]);
+      return mk("be", p[0]+" ___ "+p[2]+".", p[1], ["am","is","are","be"].filter(x=>x!==p[1]),
+        "主语是 "+p[0]+"，be 动词要用 "+p[1]+"。口诀：I 用 am，you 用 are，is 跟着 he/she/it。"); },
+    ()=>{ const s=R(["you","your parents","Tom and Lily","the cat"]);
+      const a= s==="you"?"Are":s==="the cat"?"Is":"Are";
+      return mk("be", "___ "+s+" students here?", a, ["Is","Are","Am","Be"],
+        "be 动词开头的一般疑问句：主语是复数或 you 用 Are，第三人称单数用 Is。"); },
+    ()=>{ const n=R(["Lily","Tom","my brother","Miss Wang"]);
+      return mk("be", n+" ___ not at school today.", "is", ["am","are","is","be"],
+        n+" 是第三人称单数，否定句用 is not (isn't)。"); },
+  ],
+  pres: [
+    ()=>{ const v=R([
+      ["play","plays","playing","played","football"],["watch","watches","watching","watched","TV"],
+      ["go","goes","going","went","to school"],["do","does","doing","did","homework"],
+      ["have","has","having","had","breakfast"],["study","studies","studying","studied","English"],
+      ["wash","washes","washing","washed","the dishes"],["fly","flies","flying","flew","a kite"],
+      ["like","likes","liking","liked","apples"],["read","reads","reading","read","books"]]);
+      const s=R(["He","She","Tom","Lily","My dad","The bird"]);
+      return mk("pres", s+" ___ "+v[4]+" every day.", v[1], [v[0],v[2],v[3]],
+        "一般现在时中，主语是第三人称单数（"+s+"），动词要加 s/es。"+v[0]+" → "+v[1]+"。"); },
+    ()=>{ return mk("pres", "Lily ___ like coffee.", "doesn't", ["don't","isn't","aren't"],
+      "第三人称单数的否定句用 doesn't + 动词原形：Lily doesn't like coffee。"); },
+    ()=>{ const s=R(["Tom","she","your sister","the dog"]);
+      return mk("pres", "___ "+s+" like English?", "Does", ["Do","Is","Are"],
+        "主语是第三人称单数，一般疑问句用 Does 开头，后面动词用原形。"); },
+    ()=>{ const s=R(["We","You","They","The boys"]);
+      return mk("pres", s+" ___ to school on foot.", "go", ["goes","going","went"],
+        s+" 不是第三人称单数，动词用原形 go。"); },
+  ],
+  prog: [
+    ()=>{ const v=R([
+      ["run","running"],["swim","swimming"],["write","writing"],["read","reading"],
+      ["sing","singing"],["dance","dancing"],["sit","sitting"],["eat","eating"],["make","making"]]);
+      const s=R(["The children","They","The boys","We","You"]);
+      const be=s==="We"||s==="You"?"are":"are";
+      return mk("prog", "Look! "+s+" ___ "+v[1]+" now.", be+" "+v[1],
+        ["is "+v[1], "am "+v[1], v[0]+"s"],
+        "now/Look 提示动作正在进行：be + 动词ing。"+s+" 是复数，用 are "+v[1]+"。"); },
+    ()=>{ const v=R([
+      ["run","running"],["swim","swimming"],["write","writing"],["sing","singing"],
+      ["dance","dancing"],["make","making"],["sit","sitting"]]);
+      const s=R(["She","He","Tom","Lily","The girl"]);
+      return mk("prog", "Listen! "+s+" ___ "+v[1]+" an English song.", "is "+v[1],
+        ["are "+v[1], "am "+v[1], v[0]+"s"],
+        s+" 是第三人称单数，现在进行时用 is + "+v[1]+"。"); },
+    ()=>{ const s=R(["I","He","They"]);
+      const be=s==="I"?"am":s==="He"||s==="She"?"is":"are";
+      return mk("prog", "— What are you doing? — "+s+" ___ drawing a picture.", be,
+        ["is","are","am","do"].filter(x=>x!==be),
+        "现在进行时回答也要用 be + doing，"+s+" 对应 "+be+"。"); },
+  ],
+  past: [
+    ()=>{ const v=R([
+      ["go","went","going"],["see","saw","seeing"],["eat","ate","eating"],["buy","bought","buying"],
+      ["take","took","taking"],["have","had","having"],["do","did","doing"],["come","came","coming"]]);
+      const t=R(["Yesterday","Last night","Last Sunday","Two days ago","Last week"]);
+      const o={"go":"to the park","see":"a film","eat":"a big cake","buy":"a toy car",
+        "take":"the bus","have":"a good time","do":"my homework","come":"to my home"}[v[0]];
+      return mk("past", t+", I ___ "+o+".", v[1], [v[0], v[2], v[0]+"s"],
+        t+" 表示过去的时间，动词用过去式："+v[0]+" → "+v[1]+"（不规则变化，要记住哦）。"); },
+    ()=>{ const v=R([
+      ["play","played","playing"],["watch","watched","watching"],["visit","visited","visiting"],
+      ["study","studied","studying"],["stop","stopped","stopping"],["clean","cleaned","cleaning"],
+      ["walk","walked","walking"]]);
+      const t=R(["Yesterday","Last weekend","An hour ago","Last Friday"]);
+      return mk("past", t+", Tom ___ "+v[0]+" with his friends.", v[1], [v[0], v[2], v[0]+"s"],
+        "过去时用动词过去式。规则变化："+v[0]+" → "+v[1]+"。"); },
+    ()=>{ const v=R([["is","was"],["are","were"],["do","did"],["go","went"],["have","had"]]);
+      return mk("past", "— Where ___ you last night? — I was at home.", "were",
+        ["was","are","did"], "主语是 you，过去时的 be 动词用 were。"); },
+  ],
+  futu: [
+    ()=>{ const v=R([
+      ["visit","his grandma"],["play","football"],["go","to the zoo"],["watch","a film"],
+      ["clean","the room"],["help","his mother"],["fly","a kite"]]);
+      const s=R(["Tom","She","He","Lily"]);
+      return mk("futu", "Tomorrow, "+s+" will ___ "+v[1]+".", v[0],
+        [v[0]+"s", v[0]+"ing", "went"],
+        "will 后面永远用动词原形：will "+v[0]+"。表示将来发生的动作。"); },
+    ()=>{ const s=R(["We","They","I","You"]);
+      return mk("futu", s+" ___ going to have a picnic next week.", s==="I"?"am":s==="You"?"are":"are",
+        ["is","am","are","be"].filter(x=>x!== (s==="I"?"am":"are")),
+        "be going to 表示计划要做的事。"+s+" 对应 be 动词 "+(s==="I"?"am":"are")+"。"); },
+    ()=>{ return mk("futu", "— What will you do tomorrow? — I ___ visit my uncle.", "will",
+      ["am","did","do"], "问句用了 will，回答也要用 will。"); },
+  ],
+  plural: [
+    ()=>{ const n=R([
+      ["box","boxes","boxs","boxies"],["bus","buses","buss","busies"],["watch","watches","watchs","watchies"],
+      ["apple","apples","applees","appleies"],["leaf","leaves","leafs","leafes"],
+      ["baby","babies","babys","babyes"],["book","books","bookes","bookies"]]);
+      const num=R(["two","three","four","five"]);
+      return mk("plural", "There are "+num+" ___ on the desk.", n[1], [n[0], n[2], n[3]],
+        "名词复数规则：一般加 s（"+n[0]+"→"+n[1]+"），或按特殊规则变化，注意拼写哦。"); },
+    ()=>{ const n=R([
+      ["child","children","childs","childrens"],["foot","feet","foots","feetes"],
+      ["tooth","teeth","tooths","teethes"],["man","men","mans","mens"],
+      ["woman","women","womans","womens"],["mouse","mice","mouses","mices"]]);
+      return mk("plural", "Look at those little ___!", n[1], [n[0], n[2], n[3]],
+        n[0]+" 是不规则名词，复数是 "+n[1]+"，需要特别记忆。"); },
+    ()=>{ return mk("plural", "How many ___ are there in your family?", "people",
+      ["peoples","person","a people"], "people 本身就是复数（人们），不加 s。"); },
+  ],
+  art: [
+    ()=>{ const an=R(["apple","orange","egg","elephant","umbrella","English book","ice cream"]);
+      const a=R(["dog","cat","book","banana","kite","ball","ruler"]);
+      const useAn=Math.random()<0.5;
+      const w=useAn?an:a;
+      return mk("art", "I have ___ "+w+".", useAn?"an":"a", ["an","a","the","/"],
+        useAn ? "“"+w+"”以元音音素开头，用 an。" : "“"+w+"”以辅音音素开头，用 a。"); },
+    ()=>{ const w=R(["sun","moon","sky","earth"]);
+      return mk("art", "___ "+w+" is bright tonight.", "The", ["A","An","/"],
+        "世界上独一无二的事物（"+w+"）前面要用定冠词 The。"); },
+    ()=>{ const p=R([["interesting","an"],["old","an"],["easy","an"],["important","an"],
+      ["big","a"],["red","a"],["nice","a"],["new","a"],["tall","a"]]);
+      return mk("art", "This is ___ "+p[0]+" story.", p[1], ["a","an","the","/"],
+        "冠词看后面的单词开头音素：“"+p[0]+"”是"+(p[1]==="an"?"元音":"辅音")+"音开头，用 "+p[1]+"。"); },
+  ],
+  pron: [
+    ()=>{ const p=R([["Lily","She","female"],["Tom","He","male"],["my parents","They","plural"],
+      ["the dog","It","thing"],["my brother","He","male"],["my sister and I","We","with me"]]);
+      return mk("pron", "This is "+p[0]+". ___ is very kind.", p[1],
+        ["He","She","They","We","It"].filter(x=>x!==p[1]),
+        "指代“"+p[0]+"”要用主格代词 "+p[1]+"。"); },
+    ()=>{ const p=R([["me","I"],["him","he"],["her","she"],["them","they"],["us","we"]]);
+      return mk("pron", "Please give the book to ___.", p[0],
+        [p[1], "my", "mine"],
+        "介词 to 后面要用宾格："+p[1]+" 的宾格是 "+p[0]+"。"); },
+    ()=>{ const p=R([["her","hers"],["his","his"],["my","mine"],["their","theirs"]]);
+      return mk("pron", "This is ___ bag. (she)", p[0],
+        [p[1], "she", "her's"],
+        "she 的形容词性物主代词是 "+p[0]+"，后面要跟名词（bag）。"); },
+    ()=>{ const p=R([["hers","her"],["his","his"],["mine","my"],["theirs","their"]]);
+      return mk("pron", "The red bag is ___. (she)", p[0],
+        [p[1], "she", p[0]+"s"],
+        "这里后面没有名词，要用名词性物主代词："+p[0]+"（= her bag）。"); },
+  ],
+  comp: [
+    ()=>{ const a=R([["tall","taller","tallest"],["fast","faster","fastest"],
+      ["long","longer","longest"],["short","shorter","shortest"],["old","older","oldest"]]);
+      return mk("comp", "Tom is ___ than Jack.", a[1],
+        [a[0], a[2], "more "+a[0]],
+        "两者比较用比较级 + than："+a[0]+" → "+a[1]+"。"); },
+    ()=>{ const a=R([["tall","taller","tallest"],["big","bigger","biggest"],
+      ["fast","faster","fastest"],["happy","happier","happiest"],["heavy","heavier","heaviest"]]);
+      return mk("comp", "He is the ___ student in our class.", a[2],
+        [a[1], a[0], "most "+a[0]],
+        "三者以上比较用“the + 最高级”："+a[0]+" → "+a[2]+"。"); },
+    ()=>{ return mk("comp", "Your English is ___ than mine.", "better",
+      ["gooder","good","best"], "good 是特殊变化：good → better → best，比较级用 better。"); },
+  ],
+  prep: [
+    ()=>{ const p=R([
+      ["at","7:00 in the morning"],["at","noon"],["at","half past six"],["at","night"],
+      ["on","Monday"],["on","May 1st"],["on","Sunday morning"],["on","my birthday"],
+      ["in","May"],["in","2026"],["in","the morning"],["in","winter"]]);
+      return mk("prep", "I get up early ___ "+p[1]+".", p[0],
+        ["in","on","at","of"].filter(x=>x!==p[0]),
+        "时间介词口诀：at 具体时刻，on 具体某天，in 较长时段。“"+p[1]+"”要用 "+p[0]+"。"); },
+    ()=>{ return mk("prep", "My birthday is ___ October.", "in", ["on","at","of"],
+      "月份前面用 in：in October。"); },
+    ()=>{ return mk("prep", "We have no classes ___ Sundays.", "on", ["in","at","of"],
+      "具体某一天（星期几）用 on：on Sundays。"); },
+  ],
+  tb: [
+    ()=>{ const usePl=Math.random()<0.5;
+      const sing=R([["a cat","on the sofa"],["a pen","in the bag"],["a picture","on the wall"]]);
+      const pl=R([["two books","on the desk"],["some apples","in the box"],["three birds","in the tree"]]);
+      const item=usePl?pl:sing;
+      return mk("tb", "___ "+item[0]+" "+item[1]+".", usePl?"There are":"There is",
+        ["There is","There are","Have","Has"],
+        "There be 句型遵循“就近原则”："+item[0]+" 是"+(usePl?"复数，用 There are":"单数，用 There is")+"。"); },
+    ()=>{ const usePl=Math.random()<0.5;
+      return mk("tb", "— ___ "+(usePl?"any apples":"a pen")+" in your bag? — Yes, there "+(usePl?"are":"is")+".",
+        usePl?"Are there":"Is there",
+        ["Is there","Are there","There is","Have"],
+        "There be 一般疑问句把 be 提前："+(usePl?"Are there":"Is there")+"...？"); },
+    ()=>{ return mk("tb", "There ___ some milk in the glass.", "is",
+      ["are","have","be"], "milk 是不可数名词，be 动词用 is。"); },
+  ],
+  modal: [
+    ()=>{ const a=R(["swim","dance","play the piano","ride a bike","fly a kite"]);
+      return mk("modal", "___ you "+a+"? — Yes, I can.", "Can",
+        ["Must","Do","Are"], "询问能力用 Can 开头：Can you "+a+"？回答 Yes, I can. / No, I can't."); },
+    ()=>{ return mk("modal", "You ___ be quiet in the library.", "must",
+      ["can","do","am"], "表示“必须、应该”用 must：must be quiet。"); },
+    ()=>{ return mk("modal", "You ___ play football in the street. It's dangerous!", "mustn't",
+      ["must","can","needn't"], "表示“千万不要、禁止”用 mustn't。在马路上踢球很危险！"); },
+    ()=>{ return mk("modal", "___ I ask you a question? — Sure.", "May",
+      ["Must","Am","Do"], "礼貌地请求许可用 May I...? 回答常用 Sure. / Certainly."); },
+  ],
+  wh: [
+    ()=>{ const p=R([
+      ["When","is your birthday? — It's in June."],
+      ["Where","do you live? — In Beijing."],
+      ["Who","is your best friend? — Lucy."],
+      ["Whose","bag is this? — It's mine."],
+      ["How","are you? — I'm fine, thank you."],
+      ["What","is your favorite subject? — English."],
+      ["Which","season do you like best? — Spring."]]);
+      return mk("wh", "___ "+p[1], p[0],
+        ["What","Where","When","Who","How","Whose","Which"].filter(x=>x!==p[0]),
+        "根据回答选择疑问词：问时间用 When，问地点用 Where，问人用 Who，问“谁的”用 Whose，问方式/身体用 How。"); },
+    ()=>{ return mk("wh", "— ___ is it today? — It's Monday.", "What day",
+      ["What time","When","How"], "问星期用 What day；问具体几点用 What time。"); },
+    ()=>{ return mk("wh", "— ___ is it? — It's seven o'clock.", "What time",
+      ["What day","Where","Who"], "问几点钟用 What time。"); },
+  ],
+  cnt: [
+    ()=>{ const u=R([["water","waters","a water"],["milk","milks","two milks"],
+      ["rice","rices","a rice"],["bread","breads","three breads"],["juice","juices","a juice"]]);
+      return mk("cnt", "There is some ___ on the table.", u[0],
+        [u[1], u[2], "many "+u[0]],
+        u[0]+" 是不可数名词：没有复数形式，不能加 s，也不能用 a/an。"); },
+    ()=>{ return mk("cnt", "I bought some ___ at the shop.", "apples",
+      ["apple","an apple","appless"], "some 后面接可数名词复数或不可数名词：some apples。"); },
+    ()=>{ return mk("cnt", "How ___ water is there in the bottle?", "much",
+      ["many","some","any"], "How much + 不可数名词；How many + 可数名词复数。"); },
+    ()=>{ return mk("cnt", "How ___ books do you have?", "many",
+      ["much","some","any"], "books 是可数名词复数，用 How many。"); },
+  ],
+};
+
+function genQuestion(topicId, tag){
+  const q = R(BANK[topicId])();
+  if(tag) q.tag = tag;
+  return q;
+}
+
+/* ================= 在线题库（全局共享，不随账号上云） ================= */
+const OBKEY="wb_online_bank_v1";
+let onlineBank={}; // {topicId: [题目...]}
+function loadOnline(){ try{ onlineBank=JSON.parse(localStorage.getItem(OBKEY))||{}; }catch(e){ onlineBank={}; } }
+function saveOnline(){ try{ localStorage.setItem(OBKEY, JSON.stringify(onlineBank)); }catch(e){} }
+function onlineTotal(){ let n=0; Object.keys(onlineBank).forEach(k=>n+=(onlineBank[k]||[]).length); return n; }
+
+/* British Council 官方讲解页（按知识点直达） */
+const BC_BASE="https://learnenglish.britishcouncil.org/free-resources/grammar/";
+const BC_REF={
+  be:"a1-a2/present-simple-be", pres:"a1-a2/present-simple", art:"a1-a2-grammar/articles-a-an-the",
+  comp:"a1-a2/comparative-adjectives", prep:"a1-a2-grammar/prepositions-of-time-at-in-on",
+  tb:"a1-a2/using-there-there-are", wh:"a1-a2/question-forms", cnt:"a1-a2/nouns-countable-uncountable",
+  pron:"a1-a2/possessive-s", past:"a1-a2/past-continuous-past-simple",
+};
+
+async function onlineSyncTopics(topicList){
+  const base=(syncCfg.api||"").replace(/\/+$/,"");
+  if(!base){ toast("请先在「云同步」里填好 API 地址"); return; }
+  const list=(topicList||[]).filter(t=>t&&t!=="random");
+  if(!list.length){ toast("请先选择一个知识点"); return; }
+  toast("🌐 正在联网抓题，请稍候…");
+  let added=0, failed=0;
+  for(let i=0;i<list.length;i+=4){
+    const batch=list.slice(i,i+4);
+    try{
+      const r=await fetch(base+"/api/bank/sync?topics="+encodeURIComponent(batch.join(","))+"&pages=2",
+        { headers: syncCfg.token ? {"X-Token":syncCfg.token} : {} });
+      const d=await r.json();
+      if(!d.ok) throw new Error(d.error||"接口异常");
+      batch.forEach(t=>{
+        const qs=(d.questions&&d.questions[t])||[];
+        const old=new Set((onlineBank[t]||[]).map(x=>x.text+"|"+x.answer));
+        const fresh=qs.filter(q=>!old.has(q.text+"|"+q.answer));
+        onlineBank[t]=(onlineBank[t]||[]).concat(fresh).slice(-150);
+        added+=fresh.length;
+      });
+      saveOnline();
+    }catch(e){ failed++; console.warn("onlineSync fail:",e); }
+  }
+  saveOnline();
+  if(failed>=Math.ceil(list.length/4)) toast("❌ 抓取失败，请检查服务器是否在线");
+  else toast("✅ 已入库 "+added+" 道在线新题");
+  if(curTab==="settings") renderSettings();
+}
+
+function onlineSyncAll(){
+  onlineSyncTopics(TOPICS.map(t=>t.id));
+}
+
+function renderOnlineInfo(){
+  const el=$("onlineInfo");
+  if(!el) return;
+  const parts=TOPICS.map(t=>{
+    const n=(onlineBank[t.id]||[]).length;
+    return n?('<span style="margin-right:10px;">'+t.icon+t.name.split(" ")[0]+" "+n+"</span>"):"";
+  }).join("");
+  el.innerHTML="在线题库已入库 <b>"+onlineTotal()+"</b> 题"+(parts?"<br>"+parts:"（点击下方按钮开始抓题）");
+  const bc=$("bcLinks");
+  if(bc) bc.innerHTML=TOPICS.filter(t=>BC_REF[t.id]).map(t=>
+    '<a href="'+BC_BASE+BC_REF[t.id]+'" target="_blank" rel="noopener" style="margin-right:14px; white-space:nowrap;">'+t.icon+" "+t.name+" ↗</a>").join("");
+}
+
+/* 新题来源：在线题库优先（45%）→ 联网扩展题库（30%）→ 内置智能引擎 */
+function pickFresh(topicId, tag){
+  const on=(onlineBank[topicId]||[]);
+  if(on.length && Math.random()<0.45){
+    const q=Object.assign({}, R(on), {id:uid(), tag:tag||null});
+    return q;
+  }
+  const pool=(data.extraBank||[]).filter(q=>topicId==="random"||q.topicId===topicId);
+  if(pool.length && Math.random()<0.3){
+    const q=Object.assign({}, R(pool), {id:uid(), tag:tag||null});
+    return q;
+  }
+  return genQuestion(topicId, tag);
+}
+
+/* ================= 数据存储（多账号） ================= */
+const KEY="wb_grammar_v2";
+const OLDKEY="wb_grammar_v1";
+let store={users:{}, current:null};
+let data=null; // 当前账号的数据
+function freshUser(){ return {sessions:[], wrong:[], bankDay:"", bankLog:[], extraBank:[], readings:[], bankUrl:"", listenBank:null, listenUrl:""}; }
+function load(){
+  try{ store=JSON.parse(localStorage.getItem(KEY))||null; }catch(e){ store=null; }
+  if(!store || !store.users) store={users:{}, current:null};
+  // 迁移旧版单账号数据
+  if(!Object.keys(store.users).length){
+    let old=null;
+    try{ old=JSON.parse(localStorage.getItem(OLDKEY)); }catch(e){}
+    if(old && old.sessions){
+      store.users["我的"]=Object.assign(freshUser(), old);
+      store.current="我的";
+      localStorage.removeItem(OLDKEY);
+    }else{
+      store.users["小同学"]=freshUser();
+      store.current="小同学";
+    }
+  }
+  if(!store.current || !store.users[store.current]) store.current=Object.keys(store.users)[0];
+  data=store.users[store.current];
+}
+function saveLocal(){ store.users[store.current]=data; localStorage.setItem(KEY, JSON.stringify(store)); }
+let syncTimer=null;
+function save(){ saveLocal(); scheduleSync(); }
+function scheduleSync(){
+  if(!syncCfg.enabled) return;
+  clearTimeout(syncTimer);
+  syncTimer=setTimeout(()=>syncNow(true),1500);
+}
+
+/* ================= 云同步：配置 ================= */
+const SYNCKEY="wb_sync_cfg";
+let syncCfg={enabled:false, api:"", space:"", token:"", lastSync:0, status:"", running:false};
+function loadSyncCfg(){
+  try{ syncCfg=Object.assign(syncCfg, JSON.parse(localStorage.getItem(SYNCKEY))||{}); }catch(e){}
+  syncCfg.running=false;
+}
+function saveSyncCfg(){
+  const {enabled,api,space,token,lastSync,status}=syncCfg;
+  localStorage.setItem(SYNCKEY, JSON.stringify({enabled,api,space,token,lastSync,status}));
+}
+
+/* ================= 页面切换 ================= */
+let curTab="practice", pickedTopic="random";
+function switchTab(t){
+  curTab=t;
+  ["practice","records","wrong","listen","analysis","settings"].forEach(x=>{
+    $("view-"+x).classList.toggle("hidden", x!==t);
+    $("tab-"+x).classList.toggle("on", x===t);
+  });
+  if(t==="records") renderRecords();
+  if(t==="wrong") renderWrong();
+  if(t==="listen") renderListen();
+  if(t==="analysis") renderAnalysis();
+  if(t==="settings") renderSettings();
+  updateBadge();
+}
+
+/* ================= 练习流程 ================= */
+function initTopics(){
+  const g=$("topicGrid");
+  TOPICS.forEach(t=>{
+    const b=document.createElement("button");
+    b.className="topic-chip"; b.dataset.topic=t.id;
+    b.innerHTML=t.icon+"<br>"+t.name;
+    b.onclick=()=>pickTopic(b);
+    g.appendChild(b);
+  });
+}
+function pickTopic(el){
+  document.querySelectorAll(".topic-chip").forEach(x=>x.classList.remove("on"));
+  el.classList.add("on");
+  pickedTopic=el.dataset.topic;
+}
+
+let sess=null;
+function startSession(miniTopic, miniCount){
+  const topicId=miniTopic||pickedTopic;
+  const count=miniCount||5;
+  const queue=[];
+  // 1) 从错题本抽取未掌握的错题（最多2道），实现“出题包含之前错题”
+  const pool=data.wrong.filter(w=>!w.mastered && (topicId==="random"||w.topicId===topicId));
+  shuffle(pool);
+  pool.slice(0,2).forEach(w=>{
+    queue.push({id:uid(), topicId:w.topicId, text:w.text, options:w.options.slice(),
+      answer:w.answer, explain:w.explain, tag:"review", wbRef:w.id});
+  });
+  // 2) 生成 count 道新题
+  for(let i=0;i<count;i++){
+    const t=topicId==="random" ? R(TOPICS).id : topicId;
+    queue.push(pickFresh(t));
+  }
+  sess={topicId, queue, idx:0, log:[], startTs:Date.now(), label:topicId==="random"?"全部随机":topicName(topicId)};
+  $("setupPanel").classList.add("hidden");
+  $("resultPanel").classList.add("hidden");
+  $("quizPanel").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion(){
+  const q=sess.queue[sess.idx];
+  $("qProgress").textContent="第 "+(sess.idx+1)+" 题 / 共 "+sess.queue.length+" 题";
+  const tagEl=$("qTag");
+  tagEl.className="tag"+(q.tag==="review"?" rev":q.tag==="fix"?" fix":"");
+  tagEl.textContent=q.tag==="review"?"🔄 错题复习":q.tag==="fix"?"🔁 同类巩固":q.origin==="online"?"🌐 在线题库":"✨ 新题";
+  $("qTopic").textContent="【"+topicName(q.topicId)+"】";
+  $("qText").textContent=q.text;
+  $("qExplain").classList.add("hidden");
+  $("btnNext").classList.add("hidden");
+  const box=$("qOpts"); box.innerHTML="";
+  const letters=["A","B","C","D"];
+  q.options.forEach((o,i)=>{
+    const b=document.createElement("button");
+    b.className="opt";
+    b.innerHTML='<span class="letter">'+letters[i]+'.</span>'+o;
+    b.onclick=()=>answerQ(i,b);
+    box.appendChild(b);
+  });
+}
+
+function answerQ(i, btn){
+  const q=sess.queue[sess.idx];
+  const buttons=[...$("qOpts").children];
+  buttons.forEach(b=>b.disabled=true);
+  const correct=i===q.answer;
+  buttons[q.answer].classList.add("right");
+  if(!correct){ btn.classList.add("wrong"); }
+  sess.log.push({q:{text:q.text, topicId:q.topicId, options:q.options, answer:q.answer},
+    chosen:q.options[i], correct, tag:q.tag||null});
+
+  // 错题处理：收集错题 + 错一道再出一道同类型题
+  if(!correct){
+    addWrong(q);
+    if(sess.queue.length<15){
+      const fix=pickFresh(q.topicId,"fix");
+      sess.queue.push(fix);
+    }
+  } else if(q.tag==="review" && q.wbRef){
+    // 复习错题答对：连续 2 次标记已掌握
+    const w=data.wrong.find(x=>x.id===q.wbRef);
+    if(w){ w.reviewPass=(w.reviewPass||0)+1;
+      if(w.reviewPass>=2){ w.mastered=true; toast("🎉 这道错题你已经掌握了！"); } }
+    save();
+  }
+
+  const ex=$("qExplain");
+  const bcUrl=BC_REF[q.topicId] ? (BC_BASE+BC_REF[q.topicId]) : (q.src||"");
+  ex.innerHTML=(correct?"✅ <b>答对了！</b> ":"❌ <b>正确答案："+q.options[q.answer]+"</b><br>")+q.explain
+    +(bcUrl?' <a href="'+bcUrl+'" target="_blank" rel="noopener">📖 看官方讲解 ↗</a>':"");
+  ex.classList.remove("hidden");
+  $("btnNext").textContent = sess.idx===sess.queue.length-1 ? "查看结果 🏁" : "下一题 ➡️";
+  $("btnNext").classList.remove("hidden");
+}
+
+function nextQuestion(){
+  sess.idx++;
+  if(sess.idx<sess.queue.length){ showQuestion(); }
+  else finishSession();
+}
+
+function finishSession(){
+  const total=sess.log.length;
+  const good=sess.log.filter(x=>x.correct).length;
+  data.sessions.push({id:uid(), ts:Date.now(), date:todayStr(), time:timeStr(),
+    label:sess.label, total, good, log:sess.log});
+  save();
+  $("quizPanel").classList.add("hidden");
+  $("resultPanel").classList.remove("hidden");
+  $("resultScore").textContent=good+" / "+total+" 题";
+  $("resultMsg").textContent =
+    good===total ? "太棒了，全部答对！你就是语法小达人 🌟" :
+    good>=total*0.6 ? "不错哦！再看看错题本，下次更棒 💪" :
+    "别灰心，把错题本里的题多练几遍，一定会有进步 🍀";
+  sess=null;
+}
+
+function backToSetup(){
+  $("resultPanel").classList.add("hidden");
+  $("setupPanel").classList.remove("hidden");
+}
+
+function addWrong(q){
+  let w=data.wrong.find(x=>x.text===q.text);
+  if(!w){
+    data.wrong.push({id:uid(), topicId:q.topicId, text:q.text, options:q.options,
+      answer:q.answer, explain:q.explain, times:1, firstDate:todayStr(),
+      lastDate:todayStr(), mastered:false, reviewPass:0});
+  }else{
+    w.times++; w.lastDate=todayStr();
+    if(w.mastered){ w.mastered=false; w.reviewPass=0; } // 再答错重新进入复习
+  }
+  save();
+}
+
+/* ================= 记录（含学习日历） ================= */
+let calY, calM, calSel=null;
+function renderRecords(){ renderCalendar(); renderRecordsList(); }
+function calMove(d){
+  calM+=d;
+  if(calM<0){ calM=11; calY--; }
+  if(calM>11){ calM=0; calY++; }
+  renderCalendar();
+}
+function pickDay(d){ calSel=(calSel===d)?null:d; renderCalendar(); renderRecordsList(); }
+function clearCalSel(){ calSel=null; renderCalendar(); renderRecordsList(); }
+function renderCalendar(){
+  if(calY===undefined){ const d=new Date(); calY=d.getFullYear(); calM=d.getMonth(); }
+  const learned={};
+  data.sessions.forEach(s=>{ learned[s.date]=(learned[s.date]||0)+1; });
+  const daysIn=new Date(calY, calM+1, 0).getDate();
+  const startDow=(new Date(calY, calM, 1).getDay()+6)%7; // 周一开头
+  const today=todayStr();
+  let cells="";
+  ["一","二","三","四","五","六","日"].forEach(w=>cells+='<div class="cal-hd">'+w+'</div>');
+  for(let i=0;i<startDow;i++) cells+='<div></div>';
+  for(let d=1; d<=daysIn; d++){
+    const ds=calY+"-"+String(calM+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+    const n=learned[ds]||0;
+    const cls=(n?"learned":"")+(ds===today?" today":"")+(ds===calSel?" sel":"");
+    cells+='<div class="cal-d '+cls+'"'+(n?' onclick="pickDay(\''+ds+'\')"':'')+'>'+d
+      +(n?'<span class="dot">'+n+'次</span>':'')+'</div>';
+  }
+  $("calendarBox").innerHTML='<div class="card">'
+    +'<div class="rec-head"><button class="mini-btn" onclick="calMove(-1)">‹</button>'
+    +'<b>'+calY+' 年 '+(calM+1)+' 月学习日历</b>'
+    +'<button class="mini-btn" onclick="calMove(1)">›</button></div>'
+    +'<div class="cal">'+cells+'</div>'
+    +(calSel?'<div class="muted" style="margin-top:8px;">正在查看 <b>'+calSel+'</b> 的记录　<button class="mini-btn" onclick="clearCalSel()">取消筛选</button></div>':'')
+    +'<div class="muted" style="margin-top:6px;">🟢 绿色 = 有练习的日子（角标为练习次数），点击可查看当天记录</div>'
+    +'</div>';
+}
+function renderRecordsList(){
+  const box=$("recordsList");
+  let list=data.sessions;
+  if(calSel) list=list.filter(s=>s.date===calSel);
+  if(!list.length){
+    box.innerHTML='<div class="card muted" style="text-align:center;">'+(calSel?"这一天还没有练习记录哦":"还没有练习记录，快去出题吧！🚀")+'</div>';
+    return;
+  }
+  const byDate={};
+  list.forEach(s=>{ (byDate[s.date]=byDate[s.date]||[]).push(s); });
+  const dates=Object.keys(byDate).sort().reverse(); // 按日期倒序（最近在前）
+  let html="";
+  dates.forEach(d=>{
+    html+='<div class="date-h">📅 '+d+'（'+byDate[d].length+' 次练习）</div>';
+    byDate[d].forEach(s=>{
+      const items=s.log.map(l=>
+        '<div class="rec-item">'+(l.correct?'<span class="ok">✓</span>':'<span class="bad">✗</span> ')
+        +'【'+topicName(l.q.topicId)+'】'+esc(l.q.text)
+        +'<br><span class="muted">你的答案：'+esc(l.chosen)
+        +(l.correct?'':'　正确答案：<span class="ok">'+esc(l.q.options[l.q.answer])+'</span>')+'</span></div>').join("");
+      html+='<div class="card rec-card" onclick="this.querySelector(\'.rec-detail\').classList.toggle(\'hidden\')">'
+        +'<div class="rec-head"><span>'+s.time+'　'+s.label+'</span>'
+        +'<span class="rec-score">'+s.good+'/'+s.total+' 题</span></div>'
+        +'<div class="rec-detail hidden">'+items+'</div></div>';
+    });
+  });
+  box.innerHTML=html;
+}
+
+/* ================= 错题本 ================= */
+function renderWrong(){
+  const box=$("wrongList");
+  const list=data.wrong;
+  if(!list.length){
+    box.innerHTML='<div class="card muted" style="text-align:center;">错题本是空的，说明你学得很好！👍</div>';
+    return;
+  }
+  const un=list.filter(w=>!w.mastered).sort((a,b)=>b.lastDate.localeCompare(a.lastDate));
+  const done=list.filter(w=>w.mastered);
+  let html="";
+  if(un.length){
+    html+=un.map(w=>
+      '<div class="card"><div class="wb-item">'
+      +'<div class="qhead"><span class="tag">'+topicName(w.topicId)+'</span>'
+      +'<span class="muted">错 '+w.times+' 次 · '+w.lastDate+'</span></div>'
+      +'<div class="qtext" style="font-size:15px; margin:4px 0;">'+esc(w.text)+'</div>'
+      +'<div class="muted">正确答案：<span class="ok">'+esc(w.options[w.answer])+'</span></div>'
+      +'<div class="explain">'+esc(w.explain)+'</div>'
+      +'<div class="wb-actions">'
+      +'<button class="btn btn-primary" style="padding:9px; font-size:13px;" onclick="practiceType(\''+w.topicId+'\')">🔁 专项练此类型</button>'
+      +'<button class="btn btn-green" style="padding:9px; font-size:13px;" onclick="markMastered(\''+w.id+'\')">✔️ 已掌握</button>'
+      +'</div></div></div>').join("");
+  }
+  if(done.length){
+    html+='<h2>✔️ 已掌握（'+done.length+'）</h2>'
+      +done.map(w=>'<div class="card"><span class="tag">'+topicName(w.topicId)+'</span> '
+      +'<span style="font-size:14px;">'+esc(w.text)+'</span></div>').join("");
+  }
+  box.innerHTML=html;
+}
+function markMastered(id){
+  const w=data.wrong.find(x=>x.id===id);
+  if(w){ w.mastered=true; save(); toast("已标记为掌握 🎉"); renderWrong(); updateBadge(); }
+}
+function practiceType(topicId){
+  switchTab("practice");
+  startSession(topicId, 3);
+}
+
+/* ================= 分析 ================= */
+function renderAnalysis(){
+  const stats={};
+  data.sessions.forEach(s=>s.log.forEach(l=>{
+    const t=stats[l.q.topicId]=stats[l.q.topicId]||{total:0,good:0};
+    t.total++; if(l.correct) t.good++;
+  }));
+  const allT=data.sessions.reduce((a,s)=>a+s.total,0);
+  const allG=data.sessions.reduce((a,s)=>a+s.good,0);
+  const overall=$("overallStats");
+  if(!allT){ overall.innerHTML='<div class="muted" style="grid-column:1/4;">暂无数据，先去练习吧！</div>'; $("analysisList").innerHTML=""; return; }
+  const rate=Math.round(allG/allT*100);
+  const masteredW=data.wrong.filter(w=>w.mastered).length;
+  const weakW=data.wrong.filter(w=>!w.mastered).length;
+  overall.innerHTML=
+    '<div><div class="num">'+allT+'</div><div class="muted">累计答题</div></div>'
+    +'<div><div class="num">'+rate+'%</div><div class="muted">总正确率</div></div>'
+    +'<div><div class="num">'+data.sessions.length+'</div><div class="muted">练习次数</div></div>';
+
+  const adviceMap={
+    good:"这个知识点掌握得不错！保持每天练习，别让它生疏啦。",
+    mid:"还需要多加练习。建议今天用「专项练习」做 5 道这个知识点的题，并翻看错题本。",
+    low:"这是你的薄弱知识点！建议：1️⃣ 读一遍错题解析；2️⃣ 点错题本里「专项练此类型」；3️⃣ 连续 3 天每天练一组。"
+  };
+  let html="";
+  const rows=TOPICS.map(t=>({t, s:stats[t.id]})).filter(x=>x.s).sort((a,b)=>(a.s.good/a.s.total)-(b.s.good/b.s.total));
+  rows.forEach(({t,s})=>{
+    const r=s.good/s.total;
+    const lvl=r>=0.8?["good","掌握良好", "#22c55e"]:r>=0.6?["mid","需要巩固","#f59e0b"]:["low","比较薄弱","#ef4444"];
+    html+='<div class="card"><div class="rec-head"><span>'+t.icon+' <b>'+t.name+'</b></span>'
+      +'<span class="lvl '+lvl[0]+'">'+lvl[1]+' '+Math.round(r*100)+'%</span></div>'
+      +'<div class="bar-wrap"><div class="bar" style="width:'+Math.round(r*100)+'%; background:'+lvl[2]+';"></div></div>'
+      +'<div class="muted">答题 '+s.total+' 道 · 答对 '+s.good+' 道</div>'
+      +'<div class="advice">💡 '+adviceMap[lvl[0]]+'</div>'
+      +'<button class="btn btn-ghost" style="margin-top:8px; padding:10px; font-size:14px;" onclick="practiceType(\''+t.id+'\')">🎯 专项练习此知识点</button>'
+      +'</div>';
+  });
+  const weak=rows.filter(x=>x.s.good/x.s.total<0.8).slice(0,3).map(x=>x.t.name);
+  html='<div class="card"><b>📌 巩固建议</b><div class="advice">'
+    +(weak.length
+      ? "目前最需要巩固的知识点：<b>"+weak.join("、")+"</b>。建议每天优先做这些知识点的专项练习，系统也会自动把你的错题混入每天的新题中复习。"
+      : "所有知识点都掌握得很好！继续保持每天 5 题的节奏 🌟")
+    +'</div><div class="advice">📕 错题本：<b>'+weakW+'</b> 道待复习 · <b>'+masteredW+'</b> 道已掌握</div></div>'
+    + html;
+  $("analysisList").innerHTML=html;
+}
+
+/* ================= 账号管理 ================= */
+function renderUserList(){
+  const box=$("userList");
+  box.innerHTML=Object.keys(store.users).map(name=>
+    '<div class="sent" style="display:flex; justify-content:space-between; align-items:center;">'
+    +'<span>👤 '+esc(name)+(name===store.current?' <span class="tag">当前</span>':'')+'</span>'
+    +(name===store.current?'':'<button class="mini-btn primary" onclick="switchUser(\''+esc(name)+'\')">切换</button>')
+    +'</div>').join("");
+}
+function createUser(){
+  const name=$("newUserName").value.trim();
+  if(!name){ toast("请输入账号名字"); return; }
+  if(store.users[name]){ toast("这个账号已存在，请换一个名字"); return; }
+  store.users[name]=freshUser();
+  $("newUserName").value="";
+  switchUser(name);
+  toast("账号创建成功，学习数据将从零开始记录");
+}
+function switchUser(name){
+  store.current=name;
+  save();
+  data=store.users[name];
+  // 重置练习界面与日历
+  sess=null;
+  $("quizPanel").classList.add("hidden");
+  $("resultPanel").classList.add("hidden");
+  $("setupPanel").classList.remove("hidden");
+  calSel=null; calY=undefined;
+  senIdx=[]; passIdx=[];
+  $("curUserName").textContent=name;
+  updateBadge();
+  switchTab("practice");
+  toast("已切换到账号：👤 "+name);
+}
+
+/* ================= 题库联网更新 ================= */
+function renderBankInfo(){
+  const log=data.bankLog||[];
+  const last=log.length? log[0] : null;
+  $("bankInfo").innerHTML="内置智能引擎题库：14 大语法点 × 40+ 题型模板 × 上千词汇组合，每次出题自动生成新题（每日自动扩充）"
+    +"<br>扩展题库（联网/导入）：共 <b>"+(data.extraBank||[]).length+"</b> 道，出题时约 30% 概率混入"
+    +(last?("<br>最近一次更新："+last.date+" "+last.time+" · 版本 "+esc(last.version)+" · 新增 "+last.added+" 题")
+          :"<br>尚未联网更新过，点上方按钮试试");
+  const list=$("bankLogList");
+  if(!log.length){ list.innerHTML='<div class="muted">暂无更新日志</div>'; return; }
+  list.innerHTML=log.map(l=>
+    '<div class="sent"><span class="tag">📦 '+esc(l.version)+'</span> '
+    +'<b style="color:var(--green);">+'+l.added+'</b> 道新题'
+    +'（更新后共 '+l.total+' 道）<br><span class="muted">'+l.date+' '+l.time+' · 来源：'+esc(l.source||"")+'</span></div>'
+  ).join("");
+}
+function renderSettings(){
+  renderUserList();
+  if(data.bankUrl) $("bankUrl").value=data.bankUrl;
+  renderBankInfo();
+  renderSyncPanel();
+  renderOnlineInfo();
+}
+
+/* ================= 云同步：合并 / 拉取 / 推送 ================= */
+function mergeUser(local, remote){
+  const m=Object.assign(freshUser(), local||{});
+  const r=remote||{};
+  // 练习记录：按 id 取并集
+  const smap={};
+  (m.sessions||[]).forEach(s=>smap[s.id]=s);
+  (r.sessions||[]).forEach(s=>{ if(s && s.id && !smap[s.id]) smap[s.id]=s; });
+  m.sessions=Object.values(smap).sort((a,b)=>a.ts-b.ts);
+  // 错题本：按题干合并，次数取最大，任一端答错即视为未掌握
+  const wmap={};
+  (m.wrong||[]).forEach(w=>wmap[w.text]=w);
+  (r.wrong||[]).forEach(w=>{
+    if(!w || !w.text) return;
+    const cur=wmap[w.text];
+    if(!cur){ wmap[w.text]=w; return; }
+    cur.times=Math.max(cur.times||1, w.times||1);
+    if((w.lastDate||"")>(cur.lastDate||"")){ cur.lastDate=w.lastDate; cur.mastered=!!w.mastered; }
+    if(w.firstDate && (!cur.firstDate || w.firstDate<cur.firstDate)) cur.firstDate=w.firstDate;
+    if(cur.mastered && !w.mastered) cur.mastered=false;
+    cur.reviewPass=Math.max(cur.reviewPass||0, w.reviewPass||0);
+    if(!cur.explain && w.explain) cur.explain=w.explain;
+  });
+  m.wrong=Object.values(wmap);
+  // 跟读记录：按 日期+时间+原文 取并集
+  const rmap={};
+  (m.readings||[]).forEach(x=>rmap[x.date+x.time+x.text]=x);
+  (r.readings||[]).forEach(x=>{ const k=x.date+x.time+x.text; if(!rmap[k]) rmap[k]=x; });
+  m.readings=Object.values(rmap).sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time)).slice(0,100);
+  // 扩展题库 & 更新日志
+  const emap={};
+  (m.extraBank||[]).forEach(q=>emap[q.text]=q);
+  (r.extraBank||[]).forEach(q=>{ if(q && q.text && !emap[q.text]) emap[q.text]=q; });
+  m.extraBank=Object.values(emap);
+  const bmap={};
+  [...(m.bankLog||[]), ...(r.bankLog||[])].forEach(l=>{ if(l) bmap[(l.date||"")+(l.time||"")+(l.version||"")]=l; });
+  m.bankLog=Object.values(bmap).sort((a,b)=>((b.date||"")+(b.time||"")).localeCompare((a.date||"")+(a.time||""))).slice(0,50);
+  // 听读自定义资料
+  const l1=(m.listenBank&&m.listenBank.sentences)||[], l2=(r.listenBank&&r.listenBank.sentences)||[];
+  const lsmap={}; l1.forEach(x=>lsmap[x.en]=x); l2.forEach(x=>{ if(x&&x.en&&!lsmap[x.en]) lsmap[x.en]=x; });
+  const p1=(m.listenBank&&m.listenBank.passages)||[], p2=(r.listenBank&&r.listenBank.passages)||[];
+  const lpmap={}; p1.forEach(x=>lpmap[x.title]=x); p2.forEach(x=>{ if(x&&x.title&&!lpmap[x.title]) lpmap[x.title]=x; });
+  m.listenBank={sentences:Object.values(lsmap), passages:Object.values(lpmap)};
+  m.bankUrl=m.bankUrl||r.bankUrl||"";
+  m.listenUrl=m.listenUrl||r.listenUrl||"";
+  m.bankDay=m.bankDay||r.bankDay||"";
+  return m;
+}
+function mergeStore(local, remote){
+  const out={users:{}, current:local.current||remote.current};
+  Object.keys(remote.users||{}).forEach(n=>{ out.users[n]=mergeUser((local.users||{})[n], remote.users[n]); });
+  Object.keys(local.users||{}).forEach(n=>{ if(!out.users[n]) out.users[n]=local.users[n]; });
+  if(!out.users[out.current]) out.current=Object.keys(out.users)[0];
+  return out;
+}
+function syncEndpoint(){ return syncCfg.api.replace(/\/+$/,"")+"/api/data?space="+encodeURIComponent(syncCfg.space); }
+function syncHeaders(){ const h={"Content-Type":"application/json"}; if(syncCfg.token) h["X-Token"]=syncCfg.token; return h; }
+
+async function syncNow(silent){
+  if(!syncCfg.api || !syncCfg.space){
+    if(!silent) toast("请先填写 API 地址和空间编号");
+    return;
+  }
+  if(syncCfg.running) return;
+  syncCfg.running=true;
+  try{
+    let remote=null;
+    const res=await fetch(syncEndpoint(), {headers:syncHeaders(), cache:"no-store"});
+    if(res.status===401) throw new Error("访问口令不正确");
+    if(res.ok){
+      const txt=await res.text();
+      if(txt && txt.trim()) { try{ remote=JSON.parse(txt); }catch(e){} }
+    }else if(res.status!==404){
+      throw new Error("读取失败 HTTP "+res.status);
+    }
+    if(remote && remote.users) store=mergeStore(store, remote);
+    saveLocal();
+    const put=await fetch(syncEndpoint(), {method:"PUT", headers:syncHeaders(),
+      body:JSON.stringify({users:store.users, current:store.current, updatedAt:Date.now()})});
+    if(!put.ok) throw new Error("写入失败 HTTP "+put.status);
+    syncCfg.lastSync=Date.now(); syncCfg.status="ok";
+    saveSyncCfg();
+    syncCfg.running=false;
+    refreshAfterSync();
+    if(!silent) toast("☁️ 同步完成，各设备数据已一致");
+  }catch(e){
+    syncCfg.running=false;
+    syncCfg.status="err:"+(e.message||"网络异常");
+    saveSyncCfg();
+    refreshAfterSync();
+    if(!silent) toast("云同步失败："+(e.message||"网络异常"));
+  }
+}
+function refreshAfterSync(){
+  if(store.users[store.current]) data=store.users[store.current];
+  updateBadge(); renderSyncBadge();
+  $("curUserName").textContent=store.current;
+  if(curTab==="settings") renderSettings();
+  else if(curTab==="records") renderRecords();
+  else if(curTab==="wrong") renderWrong();
+  else if(curTab==="analysis") renderAnalysis();
+  else if(curTab==="listen"){ senIdx=[]; renderListen(); }
+}
+function renderSyncBadge(){
+  const el=$("syncState");
+  if(!el) return;
+  if(!syncCfg.enabled){ el.textContent="本机模式"; return; }
+  if(syncCfg.status && syncCfg.status.indexOf("err:")===0) el.textContent="同步异常（点此查看）";
+  else if(syncCfg.lastSync){
+    const d=new Date(syncCfg.lastSync);
+    el.textContent="已同步 "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+  }else el.textContent="云同步已开启";
+}
+function renderSyncPanel(){
+  $("syncApi").value=syncCfg.api||"";
+  $("syncSpace").value=syncCfg.space||"";
+  $("syncToken").value=syncCfg.token||"";
+  let st;
+  if(!syncCfg.enabled) st="未开启 · 数据仅保存在本机";
+  else st="已开启"+(syncCfg.lastSync?(" · 上次同步 "+new Date(syncCfg.lastSync).toLocaleString()):" · 尚未成功同步");
+  $("syncInfo").innerHTML="状态："+st
+    +"<br>云空间："+(syncCfg.space?esc(syncCfg.space):"（未设置）")
+    +" · 本机数据：练习 "+data.sessions.length+" 次 · 错题 "+data.wrong.length+" 道 · 跟读 "+(data.readings||[]).length+" 条"
+    +(syncCfg.status && syncCfg.status.indexOf("err:")===0 ? '<br><span class="bad">最近错误：'+esc(syncCfg.status.slice(4))+'</span>' : "");
+}
+function connectSync(){
+  const api=$("syncApi").value.trim();
+  const space=$("syncSpace").value.trim();
+  const token=$("syncToken").value.trim();
+  if(!/^https?:\/\//i.test(api)){ toast("API 地址要以 http:// 或 https:// 开头"); return; }
+  if(!/^[A-Za-z0-9_-]{3,32}$/.test(space)){ toast("空间编号用字母/数字/-/_ 组成，3-32 位"); return; }
+  syncCfg.api=api.replace(/\/+$/,""); syncCfg.space=space; syncCfg.token=token;
+  syncCfg.enabled=true; syncCfg.status=""; saveSyncCfg();
+  syncNow(false);
+  renderSyncPanel();
+}
+function disconnectSync(){
+  if(!confirm("断开云同步后，本应用将只读写本机数据，确定吗？")) return;
+  syncCfg.enabled=false; syncCfg.status=""; saveSyncCfg();
+  renderSyncPanel(); renderSyncBadge(); toast("已断开云同步，当前为本机模式");
+}
+function updateBank(){
+  const url=$("bankUrl").value.trim();
+  if(!url){ toast("请先填写题库 JSON 网址"); return; }
+  toast("正在联网获取题库，请稍等…");
+  fetch(url, {cache:"no-store"})
+    .then(res=>{ if(!res.ok) throw new Error("网络返回 "+res.status); return res.text(); })
+    .then(txt=>importBankJSON(txt, url))
+    .catch(e=>toast("联网更新失败："+e.message+"，可检查网址，或把题库 JSON 粘贴到下方导入"));
+}
+function importBank(){ importBankJSON($("bankPaste").value, "粘贴导入"); }
+function importBankJSON(txt, source){
+  let j;
+  try{ j=JSON.parse(txt); }catch(e){ toast("JSON 格式不对，无法导入"); return; }
+  const qs=Array.isArray(j)? j : (j.questions||j.bank);
+  if(!Array.isArray(qs)){ toast("没有找到题目数组 questions"); return; }
+  const ids=TOPICS.map(t=>t.id);
+  let added=0;
+  qs.forEach(q=>{
+    if(!ids.includes(q.topicId)) return;
+    if(typeof q.text!=="string" || !Array.isArray(q.options) || q.options.length<2) return;
+    const ans=Number(q.answer);
+    if(!(ans>=0 && ans<q.options.length)) return;
+    if((data.extraBank||[]).some(x=>x.text===q.text)) return;
+    data.extraBank.push({id:uid(), topicId:q.topicId, text:q.text,
+      options:q.options.map(String), answer:ans, explain:String(q.explain||"这是扩展题库的题目，认真想想哦")});
+    added++;
+  });
+  const version=String(j.version||("导入-"+todayStr()+" "+timeStr()));
+  data.bankLog=data.bankLog||[];
+  data.bankLog.unshift({date:todayStr(), time:timeStr(), version, added, source:source||"", total:(data.extraBank||[]).length});
+  data.bankLog=data.bankLog.slice(0,50);
+  data.bankDay=todayStr();
+  save(); renderBankInfo();
+  toast(added>0 ? "✅ 题库更新完成！新增 "+added+" 道题" : "题库已是最新，没有新增题目");
+}
+
+/* ================= 导出与清空 ================= */
+function exportData(){
+  const blob=new Blob([JSON.stringify({user:store.current, data},null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="英语语法学习记录_"+store.current+"_"+todayStr()+".json";
+  a.click();
+}
+function importData(input){
+  const f=input.files && input.files[0];
+  if(!f) return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    let j;
+    try{ j=JSON.parse(reader.result); }catch(e){ toast("文件格式不对，无法导入"); input.value=""; return; }
+    if(j.users && typeof j.users==="object"){
+      // 完整备份（含多个账号）
+      store=mergeStore(store, {users:j.users, current:j.current});
+      data=store.users[store.current];
+      saveLocal(); updateBadge(); renderSettings(); toast("✅ 已合并导入备份（多账号）");
+    }else if(j.data && typeof j.data==="object"){
+      // 单账号备份
+      const name=j.user || store.current;
+      store.users[name]=mergeUser(store.users[name], j.data);
+      if(name!==store.current) store.current=name;
+      data=store.users[store.current];
+      saveLocal(); updateBadge(); renderSettings(); toast("✅ 已合并导入账号「"+name+"」的数据");
+    }else{
+      toast("这个文件里没有可识别的学习数据");
+    }
+    input.value="";
+  };
+  reader.readAsText(f);
+}
+function clearData(){
+  if(confirm("确定要清空账号「"+store.current+"」的所有练习记录、错题本和跟读记录吗？此操作不可恢复！")){
+    data=freshUser();
+    save(); updateBadge(); renderSettings(); toast("已清空当前账号数据");
+  }
+}
+
+/* ================= 杂项 ================= */
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function toast(msg){
+  const t=document.createElement("div");
+  t.className="toast"; t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),2200);
+}
+function updateBadge(){
+  const n=data.wrong.filter(w=>!w.mastered).length;
+  const b=$("wrongBadge");
+  b.textContent=n; b.classList.toggle("hidden", n===0);
+}
+
+/* ================= 听读模块 ================= */
+const SENTENCES=[
+  {en:"I get up at seven o'clock in the morning.", zh:"我早上七点起床。"},
+  {en:"My favorite subject is English.", zh:"我最喜欢的科目是英语。"},
+  {en:"There are many books on the desk.", zh:"书桌上有许多书。"},
+  {en:"We played football after school yesterday.", zh:"昨天放学后我们踢了足球。"},
+  {en:"My mother is cooking dinner in the kitchen.", zh:"妈妈正在厨房做晚饭。"},
+  {en:"I will visit my grandparents this weekend.", zh:"这个周末我要去看望爷爷奶奶。"},
+  {en:"The sun is bigger than the moon.", zh:"太阳比月亮大。"},
+  {en:"Don't forget to bring your umbrella.", zh:"别忘了带上你的雨伞。"},
+  {en:"How do you go to school every day?", zh:"你每天怎么去上学？"},
+  {en:"Practice makes perfect.", zh:"熟能生巧。"},
+];
+const PASSAGES=[
+  {title:"My Day", icon:"🌅", sents:[
+    {en:"I get up at seven o'clock.", zh:"我七点起床。"},
+    {en:"I have breakfast with my family.", zh:"我和家人一起吃早餐。"},
+    {en:"I go to school at half past seven.", zh:"我七点半去上学。"},
+    {en:"After school, I do my homework.", zh:"放学后我做作业。"},
+    {en:"I go to bed at nine in the evening.", zh:"我晚上九点睡觉。"},
+  ]},
+  {title:"My Family", icon:"👨‍👩‍👧", sents:[
+    {en:"There are four people in my family.", zh:"我家有四口人。"},
+    {en:"My father is a doctor and my mother is a teacher.", zh:"爸爸是医生，妈妈是老师。"},
+    {en:"My little sister is five years old.", zh:"我妹妹五岁了。"},
+    {en:"We often play games together on weekends.", zh:"周末我们经常一起玩游戏。"},
+    {en:"I love my family very much.", zh:"我非常爱我的家。"},
+  ]},
+  {title:"At the Zoo", icon:"🦁", sents:[
+    {en:"Today our class goes to the zoo.", zh:"今天我们班去动物园。"},
+    {en:"The monkeys are jumping in the trees.", zh:"猴子们在树上跳来跳去。"},
+    {en:"The elephants are drinking water with their long noses.", zh:"大象们正用长鼻子喝水。"},
+    {en:"Look! Two lions are sleeping in the sun.", zh:"看！两只狮子正在太阳下睡觉。"},
+    {en:"What a happy day it is!", zh:"多么开心的一天啊！"},
+  ]},
+];
+const hasSR=!!(window.SpeechRecognition||window.webkitSpeechRecognition);
+let recog=null;
+let senIdx=[], passIdx=[];
+
+function speak(text, onend){
+  if(!window.speechSynthesis){ toast("当前浏览器不支持语音朗读，建议用 Edge 或 Chrome"); return; }
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US"; u.rate=0.85;
+  if(onend) u.onend=onend;
+  window.speechSynthesis.speak(u);
+}
+/* 听读资料库 = 内置 + 自定义导入；「换一批」从全部资料中随机抽取一批展示 */
+function ensureListenBank(){
+  if(!data.listenBank) data.listenBank={sentences:[], passages:[]};
+  if(!Array.isArray(data.listenBank.sentences)) data.listenBank.sentences=[];
+  if(!Array.isArray(data.listenBank.passages)) data.listenBank.passages=[];
+}
+function allSent(){ ensureListenBank(); return SENTENCES.concat(data.listenBank.sentences); }
+function allPass(){ ensureListenBank(); return PASSAGES.concat(data.listenBank.passages); }
+function reshuffle(){
+  const S=allSent(), P=allPass();
+  senIdx=shuffle(S.map((_,i)=>i)).slice(0, Math.min(5, S.length));
+  passIdx=shuffle(P.map((_,i)=>i)).slice(0, Math.min(2, P.length));
+}
+function nextBatch(){ reshuffle(); renderListen(); toast("已换一批听读内容 🔄"); }
+function playPassage(idx){ speak(allPass()[idx].sents.map(s=>s.en).join(" ")); }
+function listenSentence(idx, btn){
+  const s=allSent()[idx];
+  speak(s.en, ()=>{ if(btn) btn.textContent="🔊 再听一遍"; });
+  saveReading(s.en, null);
+}
+function followListen(idx, btn){ const s=allSent()[idx]; followSentence(s.en, btn); }
+function followPassage(idx, btn){ const p=allPass()[idx]; followSentence(p.sents.map(s=>s.en).join(" "), btn); }
+function norm(s){ return s.toLowerCase().replace(/[^a-z' ]/g," ").split(/\s+/).filter(Boolean); }
+function similarity(target, heard){
+  const A=norm(target), B=new Set(norm(heard));
+  if(!A.length) return 0;
+  return A.filter(w=>B.has(w)).length/A.length;
+}
+function followSentence(target, btn){
+  if(!hasSR){ toast("此浏览器不支持语音识别打分，请用 Chrome/Edge，或先听再自己大声跟读"); return; }
+  if(recog){ recog.stop(); return; }
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recog=new SR(); recog.lang="en-US"; recog.interimResults=false; recog.maxAlternatives=1;
+  const old=btn.textContent;
+  btn.textContent="🎧 正在听你说…（说完自动结束）";
+  recog.onresult=e=>{
+    const heard=e.results[0][0].transcript;
+    const sim=similarity(target, heard);
+    saveReading(target, Math.round(sim*100), heard);
+    toast(sim>=0.7 ? "😊 读得真棒！（相似度 "+Math.round(sim*100)+"%）"
+        : sim>=0.4 ? "🙂 有点接近（"+Math.round(sim*100)+"%），再听一遍大声跟读！"
+        : "🤔 我听到的是：“"+heard+"”，再听一遍原音，慢慢跟读");
+  };
+  recog.onerror=()=>toast("没听清，靠近一点再大声试试 🎤");
+  recog.onend=()=>{ recog=null; btn.textContent=old; renderReadLog(); };
+  recog.start();
+}
+function saveReading(text, score, heard){
+  const r=data.readings||[];
+  if(score==null && r.length && r[0].text===text) return; // 连续点听同一句不重复记录
+  data.readings=data.readings||[];
+  data.readings.unshift({date:todayStr(), time:timeStr(), text, score, heard:heard||""});
+  data.readings=data.readings.slice(0,100);
+  save(); renderReadStats();
+}
+function renderReadStats(){
+  const r=data.readings||[];
+  const scored=r.filter(x=>x.score!=null);
+  const avg=scored.length? Math.round(scored.reduce((a,x)=>a+x.score,0)/scored.length) : null;
+  $("readStats").innerHTML="共跟读/收听 <b>"+r.length+"</b> 次"
+    +(avg!=null?(" · 跟读平均相似度 <b>"+avg+"%</b>"):hasSR?"":"（此浏览器不支持打分，先用 Edge/Chrome 试试）");
+}
+function renderReadLog(){
+  const r=(data.readings||[]).slice(0,10);
+  $("readLog").innerHTML=r.length? r.map(x=>
+    '<div class="sent"><span class="muted">'+x.date+' '+x.time+'</span> '
+    +(x.score!=null?(x.score>=70?'<span class="ok">✓ '+x.score+'%</span>':'<span class="bad">△ '+x.score+'%</span>'):'<span class="muted">🔊 收听</span>')
+    +'<br><span class="en" style="font-size:14px;">'+esc(x.text)+'</span>'
+    +(x.heard?'<br><span class="muted">我听到：'+esc(x.heard)+'</span>':'')
+    +'</div>').join("") : '<div class="muted">还没有跟读记录，快去点 🎤 试试吧！</div>';
+}
+function renderListen(){
+  ensureListenBank();
+  if(!senIdx.length) reshuffle();
+  const S=allSent();
+  $("sentenceList").innerHTML=senIdx.map(idx=>{
+    const s=S[idx];
+    return '<div class="sent"><div class="en">'+esc(s.en)+'</div><div class="zh">'+esc(s.zh)+'</div>'
+      +'<div class="row">'
+      +'<button class="mini-btn primary" id="listenBtn'+idx+'" onclick="listenSentence('+idx+', this)">🔊 听</button>'
+      +'<button class="mini-btn" onclick="followListen('+idx+', document.getElementById(\'listenBtn'+idx+'\'))">🎤 跟读打分</button>'
+      +'</div></div>';
+  }).join("");
+  renderPassages();
+  renderListenBankInfo();
+  renderReadStats(); renderReadLog();
+}
+function renderPassages(){
+  const P=allPass();
+  $("passageBox").innerHTML=passIdx.map(idx=>{
+    const p=P[idx];
+    const en=p.sents.map(s=>s.en).join(" ");
+    const zh=p.sents.map(s=>s.zh).join("");
+    return '<div style="margin-bottom:16px;">'
+      +'<div style="font-weight:700; margin-bottom:6px;">'+esc(p.icon||"📖")+' '+esc(p.title||"小短文")+'</div>'
+      +'<div class="pass-text">'+esc(en)+'</div>'
+      +'<div class="pass-zh">'+esc(zh)+'</div>'
+      +'<div class="row">'
+      +'<button class="mini-btn primary" id="passBtn'+idx+'" onclick="playPassage('+idx+')">🔊 整篇朗读</button>'
+      +'<button class="mini-btn" onclick="followPassage('+idx+', document.getElementById(\'passBtn'+idx+'\'))">🎤 跟读打分</button>'
+      +'</div></div>';
+  }).join("");
+}
+function renderListenBankInfo(){
+  ensureListenBank();
+  $("listenBankInfo").innerHTML="资料库：内置句子 "+SENTENCES.length+" 条、短文 "+PASSAGES.length
+    +" 篇；自定义导入句子 <b>"+data.listenBank.sentences.length+"</b> 条、短文 <b>"
+    +data.listenBank.passages.length+"</b> 篇。<br>每天点「🔄 换一批」即可随机更换练习内容；导入的资料会与内置资料合并随机出现。";
+  if(data.listenUrl) $("listenUrl").value=data.listenUrl;
+}
+function fetchListenBank(){
+  const url=$("listenUrl").value.trim();
+  if(!url){ toast("请先填写听读资料 JSON 网址"); return; }
+  data.listenUrl=url; save();
+  toast("正在联网获取听读资料…");
+  fetch(url,{cache:"no-store"})
+    .then(r=>{ if(!r.ok) throw new Error("网络返回 "+r.status); return r.text(); })
+    .then(t=>importListenJSON(t))
+    .catch(e=>toast("联网更新失败："+e.message+"，可把 JSON 粘贴到下方导入"));
+}
+function importListenBank(){ importListenJSON($("listenPaste").value); }
+function importListenJSON(txt){
+  let j;
+  try{ j=JSON.parse(txt); }catch(e){ toast("JSON 格式不对，无法导入"); return; }
+  ensureListenBank();
+  let nS=0, nP=0;
+  (j.sentences||[]).forEach(s=>{
+    if(!s || typeof s.en!=="string" || !s.en.trim()) return;
+    if(allSent().some(x=>x.en===s.en)) return;
+    data.listenBank.sentences.push({en:s.en.trim(), zh:String(s.zh||"")}); nS++;
+  });
+  (j.passages||[]).forEach(p=>{
+    if(!p || !Array.isArray(p.sents) || !p.sents.length) return;
+    if(p.sents.some(s=>!s || typeof s.en!=="string")) return;
+    if(allPass().some(x=>x.title===p.title)) return;
+    data.listenBank.passages.push({title:String(p.title||"小短文"), icon:String(p.icon||"📖"),
+      sents:p.sents.map(s=>({en:String(s.en), zh:String(s.zh||"")}))}); nP++;
+  });
+  save(); senIdx=[]; passIdx=[];
+  renderListen();
+  toast((nS+nP)>0 ? "✅ 听读资料更新完成！新增 "+nS+" 句、"+nP+" 篇短文" : "听读资料已是最新，没有新增内容");
+}
+function resetListenBank(){
+  if(!confirm("恢复为内置听读资料，并清空自定义导入的内容吗？")) return;
+  data.listenBank={sentences:[], passages:[]};
+  save(); senIdx=[]; passIdx=[];
+  renderListen(); toast("已恢复内置听读资料");
+}
+
+/* ================= 初始化 ================= */
+load();
+loadOnline();
+loadSyncCfg();
+initTopics();
+updateBadge();
+$("curUserName").textContent=store.current;
+renderSyncBadge();
+if(syncCfg.enabled) syncNow(true);
+</script>
+</body>
+</html>
